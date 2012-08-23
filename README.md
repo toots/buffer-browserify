@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/toots/buffer-browserify.png)](http://travis-ci.org/toots/buffer-browserify)
 buffer-browserify
 ===============
 
