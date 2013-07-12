@@ -17,7 +17,10 @@ function Buffer(subject, encoding, offset) {
   // Are we slicing?
   if (typeof offset === 'number') {
     this.length = coerce(encoding);
-    this.offset = offset;
+    this.parent = subject.parent ? subject.parent : subject;
+    for (var i = 0; i < this.length; i++) {
+      this[i] = this.parent.get(i+offset);
+    }
   } else {
     // Find the length
     switch (type = typeof subject) {
@@ -289,6 +292,8 @@ Buffer.prototype.write = function(string, offset, length, encoding) {
 };
 
 
+// Parent will not be updated when slice is.
+// Check: https://github.com/toots/buffer-browserify/issues/19
 // slice(start, end)
 Buffer.prototype.slice = function(start, end) {
   if (end === undefined) end = this.length;
