@@ -17,7 +17,6 @@ function Buffer(subject, encoding, offset) {
   // Are we slicing?
   if (typeof offset === 'number') {
     this.length = coerce(encoding);
-    this.offset = offset;
     this.parent = subject.parent ? subject.parent : subject;
     for (var i = 0; i < this.length; i++) {
       this[i] = this.parent.get(i+offset);
